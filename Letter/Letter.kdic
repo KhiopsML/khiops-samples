@@ -1,0 +1,20 @@
+Dictionary	Letter
+{
+	Categorical	lettr		;	
+	Numerical	`x-box`		;	
+	Numerical	`y-box`		;	
+	Numerical	width		;	
+	Numerical	high		;	
+	Numerical	onpix		;	
+	Numerical	`x-bar`		;	
+	Numerical	`y-bar`		;	
+	Numerical	x2bar		;	
+	Numerical	y2bar		;	
+	Numerical	xybar		;	
+	Numerical	x2ybr		;	
+	Numerical	xy2br		;	
+	Numerical	`x-ege`		;	
+	Numerical	xegvy		;	
+	Numerical	`y-ege`		;	
+	Numerical	yegvx		;	
+};

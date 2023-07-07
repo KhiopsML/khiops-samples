@@ -1,0 +1,36 @@
+
+Dictionary	Address	(id_customer)
+{
+	Categorical	id_customer		;	
+	Numerical	StreetNumber		;	
+	Categorical	StreetName		;	
+	Categorical	id_city		;	
+};
+
+Root	Dictionary	Customer	(id_customer)
+{
+	Categorical	id_customer		;	
+	Categorical	Name		;	
+	Table(Service)	Services		;	
+	Entity(Address)	Address		;	
+	Numerical	ServiceNumber	 = TableCount(Services)	;	// Number of services
+	Numerical	TotalUsageNumber	 = TableSum(Services, TableCount(Usages))	;	// Total number of usages
+	Categorical	StreetName	 = GetValueC(Address, StreetName)	;	// Name of street
+};
+
+Dictionary	Service	(id_customer, id_product)
+{
+	Categorical	id_customer		;	
+	Categorical	id_product		;	
+	Date	SubscriptionDate		;	
+	Table(Usage)	Usages		;	
+};
+
+Dictionary	Usage	(id_customer, id_product)
+{
+	Categorical	id_customer		;	
+	Categorical	id_product		;	
+	Date	Date		;	
+	Time	Time		;	
+	Numerical	Duration		;	
+};

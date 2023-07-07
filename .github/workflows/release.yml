@@ -1,0 +1,25 @@
+---
+name: Release khiops-samples
+on:
+  push:
+    tags: ['*']
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@master
+      - name: Create the release zip archive
+        uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: zip
+          filename: khiops-samples-${{ github.ref_name }}.zip
+          exclusions: '*.git*'
+      - name: Release the zip archive
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: khiops-samples-${{ github.ref_name }}.zip
+

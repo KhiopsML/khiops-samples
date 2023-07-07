@@ -1,0 +1,29 @@
+Root Dictionary Accident(AccidentId)
+{
+  Categorical AccidentId;
+  Categorical	Gravity;
+  Date Date;
+  Time Hour;
+  Categorical Light;
+  Categorical Department;
+  Categorical Commune;
+  Categorical InAgglomeration;
+  Categorical IntersectionType;
+  Categorical Weather;
+  Categorical CollisionType;
+  Categorical PostalAddress;
+  Table(Vehicle) Vehicles;
+};
+
+Dictionary Vehicle(AccidentId, VehicleId)
+{
+ Categorical AccidentId;
+ Categorical VehicleId;
+ Categorical Direction;
+ Categorical Category;
+ Numerical PassengerNumber;
+ Categorical FixedObstacle;
+ Categorical MobileObstacle;
+ Categorical ImpactPoint;
+ Categorical Maneuver;
+};

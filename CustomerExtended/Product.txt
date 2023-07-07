@@ -1,0 +1,5 @@
+id_product	Name	Price
+INTERNET	Internet	15
+MOBILE	Mobile phone	30
+TEL	Phone	20
+

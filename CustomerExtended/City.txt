@@ -1,0 +1,10 @@
+id_city	Name	id_country
+AT	Athen	GR
+BR	Brest	FR
+LN	London	UK
+MN	Munich	DE
+NY	New York	US
+PK	Pekin	CN
+PR	Paris	FR
+RM	Rome	IT
+SD	Sidney	AU

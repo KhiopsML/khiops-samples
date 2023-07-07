@@ -1,0 +1,6 @@
+id_customer	StreetNumber	StreetName	id_city
+BR	12	Ave Pisa	RM
+DP	3	Ave Leclerc	PR
+LG	26	Ave De Gaulle	PR
+SM	11	Regent street	LN
+TN	7	Lao Tseu st	PK

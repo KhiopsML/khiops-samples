@@ -1,0 +1,218 @@
+Dictionary Accident
+{
+  Categorical AccidentId = CopyC(Num_Acc);
+  Date Date = BuildDate(Sum(2000, an), mois, jour);
+  Time Hour = AsTime(Concat(Left("0000", Diff(4, Length(hrmn))), hrmn), "HHMM");
+  Categorical Light = Translate(lum,
+      VectorC("0", "1", "2", "3", "4",
+        "5"),
+      VectorC("Unknown", "Daylight", "TwilightOrDawn", "NightNoStreetLight", "NightStreelightsOff",
+        "NightStreelightsOn"));
+  Categorical Department = CopyC(dep);
+  Categorical Commune = CopyC(com);
+  Categorical InAgglomeration = IfC(EQc(agg, "2"), "Yes", IfC(EQc(agg, "1"), "No", "Unknown"));
+  Categorical IntersectionType = Translate(int,
+      VectorC("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
+      VectorC("Unknown", "NoIntersection", "X-type", "T-type", "Y-type", "MoreThan4Branches",
+        "Roundabout", "Square", "LevelCrossing", "Other"));
+  Categorical Weather = Translate(atm,
+      VectorC("0", "1", "2", "3", "4", "5",
+        "6", "7", "8", "9"),
+      VectorC("Unknown", "Normal", "LightRain", "HeavyRain", "SnowOrHail", "FogOrSmoke",
+        "StrongWindOrStorm", "VeryGood", "Overcast", "Other"));
+  Categorical CollisionType = Translate(col,
+      VectorC("0", "1", "2", "3",
+        "4", "5", "6", "7"),
+      VectorC("Unknown", "2Vehicles-Frontal", "2Vehicles-Behind", "2Vehicles-Side",
+        "3+Vehicles-Chain", "3+Vehicles-Multiple", "Other", "NoCollision"));
+  Categorical PostalAddress = CopyC(adr);
+  Categorical GPSCode = CopyC(gps);
+  Numerical Latitude = AsNumerical(Concat(Left(AsCategorical(lat), 2), ".", Right(AsCategorical(lat), 5)));
+  Numerical Longitude = AsNumerical(Concat(Left(AsCategorical(long), 1), ".", Right(AsCategorical(lat), 5)));
+  Unused Categorical	Num_Acc;
+  Unused	Numerical	an;
+  Unused	Numerical	mois;
+  Unused	Numerical	jour;
+  Unused	Categorical	hrmn;
+  Unused Categorical	lum;
+  Unused Categorical	agg;
+  Unused Categorical	int;
+  Unused Categorical	atm;
+  Unused Categorical	col;
+  Unused Categorical	com;
+  Unused Categorical	adr;
+  Unused Categorical	gps;
+  Unused Numerical	lat;
+  Unused Numerical	long;
+  Unused Categorical	dep;
+};
+
+Dictionary Place
+{
+  Categorical AccidentId = CopyC(Num_Acc);
+  Categorical RoadType = Translate(catr,
+      VectorC("1", "2", "3", "4", "5", "6", "7", "9"),
+      VectorC("Highway", "National", "Departamental", "Communal", "Private",
+        "PublicParking", "Unknown", "Other"));
+  Categorical RoadNumber = CopyC(voie);
+  Categorical RoadSecNumber = CopyC(v1);
+  Categorical RoadLetter = CopyC(v2);
+  Categorical Circulation = Translate(circ,
+    VectorC("0", "1", "2", "3", "4"),
+    VectorC("Unknown", "OneWay", "TwoWay", "DividedHighway", "VariableWayNumber"));
+  Numerical LaneNumber = Copy(nbv);
+  Categorical SpecialLane = Translate(vosp,
+    VectorC("1", "2", "3"),
+    VectorC("SeparatedBike", "Bike", "Reserved"));
+  Categorical Slope = Translate(prof,
+      VectorC("0", "1", "2", "3", "4"),
+      VectorC("Unknown", "Flat", "Uphill", "TopHill", "BottomHill"));
+  Categorical RoadMarkerId = CopyC(pr);
+  Numerical RoadMarkerDistance = Copy(pr1);
+  Categorical Layout = Translate(plan,
+      VectorC("0", "1", "2", "3", "4"),
+      VectorC("Unknown", "Straight", "LeftCurve", "RightCurve", "S-Shape"));
+  Numerical StripWidth = Copy(lartpc);
+  Numerical LaneWidth = Copy(larrout);
+  Categorical SurfaceCondition = Translate(surf,
+      VectorC("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"),
+      VectorC("Unknown", "Normal", "Wet", "Puddles", "Flooded", "Snow", "Mud", "Ice", "Oil", "Other"));
+  Categorical Infrastructure = Translate(infra,
+      VectorC("0", "1", "2", "3", "4", "5", "6", "7"),
+      VectorC("Unknown", "Tunnel", "Bridge", "Interchange", "Railroad", "Intersection", "PedestrianZone", "Toll"));
+  Categorical Localization = Translate(situ,
+      VectorC("0", "1", "2", "3", "4", "5"),
+      VectorC("Unknown", "Lane", "EmergencyShoulder", "Shoulder", "Sidewalk", "BikeLane"));
+  Categorical SchoolNear = CopyC(env1); // Undocumented values
+  Unused Categorical	Num_Acc;
+	Unused Categorical	catr;
+	Unused Categorical	voie;
+	Unused Categorical	v1;
+	Unused Categorical	v2;
+	Unused Categorical	circ;
+	Unused Numerical	nbv;
+	Unused Categorical	pr;
+	Unused Numerical	pr1;
+	Unused Categorical	vosp;
+	Unused Categorical	prof;
+	Unused Categorical	plan;
+	Unused Numerical	lartpc;
+	Unused Numerical	larrout;
+	Unused Categorical	surf;
+	Unused Categorical	infra;
+	Unused Categorical	situ;
+	Unused Categorical	env1;
+};
+
+
+Dictionary Vehicle
+{
+  Categorical AccidentId = CopyC(Num_Acc);
+  Categorical VehicleId = CopyC(num_veh);
+  Categorical Direction = Translate(senc,
+      VectorC("0", "1", "2"),
+      VectorC("Unknown", "Increasing", "Decreasing"));
+  Categorical Category = Translate(catv,
+      VectorC("01", "02", "03", "07", "10", "13",
+        "14", "15", "16", "17", "20",
+        "21", "30", "31", "32",
+        "33", "34", "35", "36", "37", "38",
+        "39", "40", "99"),
+      VectorC("Bicycle", "Moped", "Quadricycle", "Car<=3.5T", "Utility", "LargeCar_3.5T-7.5T",
+        "LargeCar>7.5T", "LargeCar+Trailer>3.5T", "Truck", "Truck+SemiTrailer", "SpecialEngine",
+        "Tractor", "Scooter<50cm3", "Motorbike_50cm3-125cm3", "Scooter_50cm3-125cm3",
+        "Motorbike>125cm3", "Scooter>125cm3", "QuadBike<=50cm3", "QuadBike>50cm3", "Bus", "Coach",
+        "Train", "Tramway", "Other"));
+  Numerical PassengerNumber = Copy(occutc);
+  Categorical FixedObstacle = Translate(obs,
+      VectorC("00", "01", "02", "03", "04",
+        "05", "06", "07", "08",
+        "09", "10", "11", "12",
+        "13", "14", "15", "16"),
+      VectorC("None", "StationaryVehicle", "Tree", "MetallicBarrier", "ConcreteBarrier",
+        "OtherBarrier", "BuildingWallOrPier", "TrafficSignOrEmergencyBox", "Post",
+        "StreetFurniture", "Parapet", "TrafficIslandRefugeOrMilestone", "SideWalkEdge",
+        "DitchTalusOrRockyWall", "OtherInLane", "OtherInSidewalkOrShoulder", "ExitLaneWithoutObstacle"));
+  Categorical MobileObstacle = Translate(obsm,
+      VectorC("0", "1", "2", "4", "5", "6", "9"),
+      VectorC("None", "Pedestrian", "Vehicle", "RailedVehicle", "DomesticAnimal", "WildAnimal", "Other"));
+  Categorical ImpactPoint = Translate(choc,
+      VectorC("0", "1", "2", "3", "4", "5", "6",
+        "7", "8", "9"),
+      VectorC("None", "Front", "RightFront", "LeftFront", "Back", "RightBack", "LeftBack",
+        "RightSide", "LeftSide", "Multiple"));
+  Categorical Maneuver = Translate(manv,
+      VectorC("00", "01", "02", "03", "04",
+        "05", "06", "07", "08", "09",
+        "10", "11", "12", "13", "14",
+        "15", "16", "17", "18", "19", "20", "21",
+        "22", "23", "24"),
+      VectorC("None", "NoDirectionChange", "SameDirectionOrLane", "BetweenLanes", "Reverse",
+        "WrongWay", "CrossStrip", "BusLaneSameDirection", "BusLaneWrongDirection", "Insertion",
+        "UTurnInLane", "ChangeToLeftLane", "ChangeToRightLane", "SwerveToLeft", "SwerveToRight",
+        "TurnToLeft", "TurnToRight", "PassLeft", "PassRight", "CrossLane", "Park", "Avoidance",
+        "OpenDoor", "Stopped", "Parked"));
+  Unused Categorical	Num_Acc;
+  Unused Categorical	senc;
+  Unused Categorical	catv;
+  Unused Numerical	occutc;
+  Unused Categorical	obs;
+  Unused Categorical	obsm;
+  Unused Categorical	choc;
+  Unused Categorical	manv;
+  Unused Categorical	num_veh;
+};
+
+Dictionary User {
+  Categorical AccidentId = CopyC(Num_Acc);
+  Categorical VehicleId = CopyC(num_veh);
+  Categorical Seat = CopyC(place); // See the README for value significance
+  Categorical Category = Translate(catu,
+      VectorC("1", "2", "3", "4", "99"),
+      VectorC("Driver", "Passenger", "Pedestrian", "PedestrianWithSkatesOrScooter", "Other"));
+  Categorical Gravity = Translate(grav,
+      VectorC("1", "2", "3", "4"),
+      VectorC("Unscathed", "Death", "InjuredAndHospitalized", "MildlyInjured"));
+  Categorical Gender = Translate(sexe, VectorC("1", "2"), VectorC("Male", "Female"));
+  Categorical TripReason = Translate(trajet,
+      VectorC("0", "1", "2", "3", "4", "5", "9"),
+      VectorC("None", "Home-Work", "Home-School", "Shopping", "Professional", "Leisure", "Other"));
+  Categorical SafetyDevice = IfC(GE(Length(secu), 1),
+    Translate(Left(secu, 1),
+      VectorC("0", "1", "2", "3", "4", "9"),
+      VectorC("None", "SeatBelt", "Helmet", "ChildrenDevice", "VisibilityVest", "Other")),
+    "");
+  Categorical SafetyDeviceUsed = IfC(GE(Length(secu), 2),
+    Translate(Middle(secu, 2, 1),
+      VectorC("0", "1", "2", "3"),
+      VectorC("None", "Yes", "No", "Unknown")),
+    "");
+	Unused Categorical	secu;
+  Categorical PedestrianLocation = Translate(locp,
+      VectorC("0", "1", "2",
+        "3", "4", "5", "6",
+        "7", "8"),
+      VectorC("None", "OnLane>50mCrossing", "OnLane<=50mCrossing",
+        "OnCrossingWithLigths", "OnCrossingWithoutLights", "OnSidewalk", "OnShoulder",
+        "OnEmergencyShoulder", "OnServiceRoad"));
+  Categorical PedestrianAction = Translate(actp,
+      VectorC("0", "1", "2", "3", "4",
+        "5", "6", "9"),
+      VectorC("None","MovingWithVehicle", "MovingAgainstVehicle", "Crossing", "Covered",
+        "Playing", "WithAnimal", "Other"));
+  Categorical PedestrianCompany = Translate(etatp,
+      VectorC("0", "1", "2", "3"),
+      VectorC("Unknown", "Alone", "WithSomebody", "WithGroup"));
+  Numerical BirthYear = Copy(an_nais);
+	Unused Categorical	Num_Acc;
+	Unused Categorical	place;
+	Unused Categorical	catu;
+	Unused Categorical	grav;
+	Unused Categorical	sexe;
+	Unused Categorical	trajet;
+	Unused Categorical	locp;
+	Unused Categorical	actp;
+	Unused Categorical	etatp;
+	Unused Numerical	an_nais;
+	Unused Categorical	num_veh;
+};

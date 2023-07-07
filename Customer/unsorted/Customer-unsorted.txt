@@ -1,0 +1,7 @@
+id_customer	Name
+BR	Bartoli
+LG	Legrand
+DP	Dupont
+SM	Smith
+DR	Durand
+TN	Tang
