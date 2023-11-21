@@ -1,7 +1,7 @@
 # Khiops Sample Datasets
 
 These are publicly available datasets reformatted to easily test the [Khiops AutoML
-suite](https://www.khiops.com).
+suite](https://khiops.org).
 
 Each dataset directory contains:
 
