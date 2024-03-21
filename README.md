@@ -46,7 +46,7 @@ Each dataset directory contains:
 
 ### Accidents
 -  Source: https://www.onisr.securite-routiere.gouv.fr/
--  Description: From _Observatoire national interministériel de la sécurité routière_ (ONISR),
+-  Description: From _Observatoire national interministÃ©riel de la sÃ©curitÃ© routiÃ¨re_ (ONISR),
    a traffic accident database from open data. Multi-table database.
 -  Multi-table database with 4 tables in a snowflake schema, 57783 instances in the root table
 - Dimensions:
