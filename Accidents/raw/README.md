@@ -1,5 +1,5 @@
 # "Accidents" dataset source
-[French Goverment Open Data Site] (https://www.data.gouv.fr/fr/datasets/base-de-donnees-accidents-corporels-de-la-circulation/)
+[French Goverment Open Data Site](https://www.data.gouv.fr/fr/datasets/base-de-donnees-accidents-corporels-de-la-circulation/)
 
 Data downloaded:
 - `characteristiques-2018.csv`
@@ -13,8 +13,8 @@ Metadata downloaded:
 
 # "Accidents" Preprocessing
 To create the preprocessed tables execute (requires the pyKhiops package):
-```
-python preprocessing.py
+```bash
+python preprocess.py
 ```
 The codification of each table is specified in the `AccidentsPreprocess.kdic` file.
 
