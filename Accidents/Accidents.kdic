@@ -1,9 +1,7 @@
 Root Dictionary Accident(AccidentId)
 {
   Categorical AccidentId;
-  Categorical	Gravity = IfC(
-      G(TableSum(Vehicles, TableCount(TableSelection(Users, EQc(Gravity, "Death")))), 0),
-      "Lethal", "NonLethal");
+  Categorical Gravity;
   Date Date;
   Time Hour;
   Categorical Light;
@@ -63,7 +61,6 @@ Dictionary User(AccidentId, VehicleId) {
   Categorical VehicleId;
   Categorical Seat;
   Categorical Category;
-  Unused Categorical Gravity; // Must be disabled since the target is a function of it
   Categorical Gender;
   Categorical TripReason;
   Categorical SafetyDevice;
