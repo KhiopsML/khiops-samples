@@ -12,11 +12,12 @@ Metadata downloaded:
 - `Licence_Ouverte.pdf` (Open data license)
 
 # "Accidents" Preprocessing
-To create the preprocessed tables execute (requires the pyKhiops package):
+To create the preprocessed tables execute (requires the `khiops` Python package):
 ```bash
 python preprocess.py
 ```
-The codification of each table is specified in the `AccidentsPreprocess.kdic` file.
+The codification of each table is specified in the `AccidentsPreprocess.kdic` file. An additional
+`AccidentsCreateTarget.kdic` dictionary allows to create the target attribute.
 
 Below you will find a translation to English of the table descriptions found in the
 `Description_BD_ONISR.pdf` document. Each field is followed by its original name in French in
@@ -33,6 +34,10 @@ parentheses.
   `None` if `Unknown` is a valid value.
 - The field `School` (`env1`) has undocumented values.
 - Latitudes and Longitudes are not coherent for accidents outside metropolitan France.
+- It creates the target attribute `Gravity` in the "Accidents" table and eliminates `Gravity` from the "Users"
+  table. This is the target for our sample dataset task.
+    - The `Gravity` attribute of the "Accidents" has the value `Lethal` if at least one associated
+      user died in the accident. Otherwise it is deemed `NonLethal`.
 
 ## Table Accident
 AccidentId (Num_Acc)

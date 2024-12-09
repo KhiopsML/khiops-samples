@@ -163,7 +163,8 @@ Dictionary Vehicle
   Unused Categorical	num_veh;
 };
 
-Dictionary User {
+Dictionary User
+{
   Categorical AccidentId = CopyC(Num_Acc);
   Categorical VehicleId = CopyC(num_veh);
   Categorical Seat = CopyC(place); // See the README for value significance

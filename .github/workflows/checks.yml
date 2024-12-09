@@ -1,0 +1,35 @@
+name: Checks
+on:
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  check-accidents-preprocess:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v4
+      - name: Install Miniforge
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          python-version: '3.12'
+          conda-remove-defaults: true
+          activate-environment: checks
+      - name: Install Khiops
+        shell: bash -el {0}
+        run: conda install -c khiops khiops=10.2.3.0
+      - name: Check Accidents Preprocessing
+        shell: bash -el {0}
+        run: |
+          cd Accidents/raw
+          python preprocess.py
+          git diff --stat --exit-code
+          if [[ $? -eq 1 ]]
+          then
+            echo "::error Accidents/raw/preprocess.py output differs from commited Accident files"
+          else
+            echo "OK: No file differences created by preprocess.py"
+          fi
