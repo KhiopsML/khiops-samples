@@ -1,7 +1,6 @@
 # Khiops Sample Datasets
 
-These are publicly available datasets reformatted to easily test the [Khiops AutoML
-suite](https://khiops.org).
+These are publicly available datasets reformatted to easily test the [Khiops AutoML suite](https://khiops.org).
 
 Each dataset directory contains:
 
@@ -13,7 +12,6 @@ Each dataset directory contains:
 ## Datasets
 
 ### Adult
-
 - Source: http://archive.ics.uci.edu/dataset/2/adult
 - Description: Also known as "Census Income" dataset. Main task: Predict whether income exceeds
   \$50K/yr based on census data.
@@ -65,6 +63,16 @@ Each dataset directory contains:
 
 ### CustomerExtended
 -  Tiny artificial dataset. It illustrates a snowflake schema with external tables.
+
+### NegativeAirlineTweets
+- Source: https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment
+- Small text classification problem, with one single text variable
+- Dimensions: 6726 instances, 2 variables
+
+### WineReviews
+- Source: https://www.kaggle.com/datasets/zynicide/wine-reviews
+- Description: Regression problem, where the goal is to predict the rating of the wine review
+- Dimensions: 129971 instances, 13 variables, including three text variables
 
 
 Reference
