@@ -1,0 +1,16 @@
+Dictionary	WineReviews
+{
+	Categorical	country		;	
+	Text	description		;	
+	Text	designation		;	
+	Numerical	points		;	
+	Numerical	price		;	
+	Categorical	province		;	
+	Categorical	region_1		;	
+	Categorical	region_2		;	
+	Categorical	taster_name		;	
+	Categorical	taster_twitter_handle		;	
+	Text	title		;	
+	Categorical	variety		;	
+	Categorical	winery		;	
+};
