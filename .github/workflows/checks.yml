@@ -1,7 +1,14 @@
+---
 name: Checks
+env:
+  DEFAULT_KHIOPS_PYTHON_VERSION: 10.6.0.0a.0
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      khiops-python-version:
+        default: 10.6.0.0a.0
+        description: Version of the khiops Conda package
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -18,12 +25,16 @@ jobs:
           python-version: '3.12'
           conda-remove-defaults: true
           activate-environment: checks
+      - name: Put the khiops-python version in the environment
+        run: |
+          KHIOPS_PYTHON_VERSION="${{ inputs.khiops-python-version || env.DEFAULT_KHIOPS_PYTHON_VERSION }}"
+          echo "KHIOPS_PYTHON_VERSION=${KHIOPS_PYTHON_VERSION}" >> "$GITHUB_ENV"
       - name: Install Khiops
         shell: bash -el {0}
-        run: conda install -c khiops khiops=10.2.3.0
+        run: conda install -c khiops-dev khiops=${KHIOPS_PYTHON_VERSION}
       - name: Check Accidents Preprocessing
         shell: bash -el {0}
-        run: |
+        run: |-
           cd Accidents/raw
           python preprocess.py
           git diff --stat --exit-code
