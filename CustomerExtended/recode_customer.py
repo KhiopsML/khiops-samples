@@ -2,7 +2,6 @@
 
 This script must be executed in the same directory of the CustomerExtended dataset.
 """
-import os
 
 from khiops import core as kh
 
@@ -34,12 +33,12 @@ def recode_customer_database():
         customer_data_table_path,
         output_data_table_path,
         additional_data_tables={
-            "Customer`Address": address_data_table_path,
-            "Customer`Services": service_data_table_path,
-            "Customer`Services`Usages": usage_data_table_path,
-            "City": city_data_table_path,
-            "Country": country_data_table_path,
-            "Product": product_data_table_path,
+            "Address": address_data_table_path,
+            "Services": service_data_table_path,
+            "Services/Usages": usage_data_table_path,
+            "/City": city_data_table_path,
+            "/Country": country_data_table_path,
+            "/Product": product_data_table_path,
         },
     )
 
