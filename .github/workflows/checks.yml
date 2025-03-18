@@ -13,7 +13,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
-  check-accidents-preprocess:
+  check-preprocessing-scripts:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout Sources
@@ -43,4 +43,29 @@ jobs:
             echo "::error Accidents/raw/preprocess.py output differs from commited Accident files"
           else
             echo "OK: No file differences created by preprocess.py"
+          fi
+      - name: Check Successful Python Script Execution
+        shell: bash -el {0}
+        run: |-
+          cd Accidents
+          python train.py
+          if [[ $? -eq 1 ]]
+          then
+            echo "::error::Accidents/train.py failed"
+          else
+            cd ../Customer
+            python sort_and_recode_customer.py
+            if [[ $? -eq 1 ]]
+            then
+              echo "::error::Customer/sort_and_recode_customer.py failed"
+            else
+              cd ../CustomerExtended
+              python recode_customer.py
+              if [[ $? -eq 1 ]]
+              then
+                echo "::error::CustomerExtended/sort_customer.py failed"
+              else
+                echo "OK: All Python scripts succeeded"
+              fi
+            fi
           fi
