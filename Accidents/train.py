@@ -2,7 +2,6 @@
 
 Must be executed within the dataset's directory
 """
-from os import path
 
 from khiops import core as kh
 
@@ -13,14 +12,14 @@ kh.train_predictor(
     "Accident",
     "Accidents.txt",
     "Gravity",
-    "GravityAnalysis",
+    "./GravityAnalysisResults.khj",
     additional_data_tables={
-        "Accident`Place": "Places.txt",
-        "Accident`Vehicles": "Vehicles.txt",
-        "Accident`Vehicles`Users": "Users.txt",
+        "Place": "Places.txt",
+        "Vehicles": "Vehicles.txt",
+        "Vehicles/Users": "Users.txt",
     },
     max_trees=0,  # create an interpretable model
     max_constructed_variables=1000,
 )
 
-print(f"Results available at GravityAnalysis")
+print("Results available at ./GravityAnalysisResults.khj")

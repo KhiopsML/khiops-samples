@@ -13,7 +13,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@master
       - name: Create the release zip archive
-        uses: thedoctor0/zip-release@0.7.1
+        uses: thedoctor0/zip-release@0.7.6
         with:
           type: zip
           filename: khiops-samples-${{ github.ref_name }}.zip

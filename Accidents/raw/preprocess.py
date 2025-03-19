@@ -63,17 +63,17 @@ if __name__ == "__main__":
     kh.deploy_model(
         "./AccidentsCreateTarget.kdic",
         "Accident",
-        f"./NoTarget/Accidents.txt",
-        f"../Accidents.txt",
+        "./NoTarget/Accidents.txt",
+        "../Accidents.txt",
         additional_data_tables={
-            "Accident`Place": "./NoTarget/Places.txt",
-            "Accident`Vehicles": "./NoTarget/Vehicles.txt",
-            "Accident`Vehicles`Users": "./NoTarget/Users.txt",
+            "Place": "./NoTarget/Places.txt",
+            "Vehicles": "./NoTarget/Vehicles.txt",
+            "Vehicles/Users": "./NoTarget/Users.txt",
         },
         output_additional_data_tables={
-            "Accident`Place": "../Places.txt",
-            "Accident`Vehicles": "../Vehicles.txt",
-            "Accident`Vehicles`Users": "../Users.txt",
+            "Place": "../Places.txt",
+            "Vehicles": "../Vehicles.txt",
+            "Vehicles/Users": "../Users.txt",
         },
     )
 
