@@ -1,6 +1,6 @@
 #Khiops 10.6.1-b.0
 
-Dictionary	FlightNegativeTweets
+Dictionary	NegativeAirlineTweets
 {
 	Categorical	negativereason		;	
 	Text	text		;	
